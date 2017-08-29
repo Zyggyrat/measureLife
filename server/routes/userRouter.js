@@ -14,18 +14,18 @@ userRouter.use(bodyParser.json());
 
 userRouter.route('/')
     .get(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
-        User.find({}, function (err, dish) {
+        User.find({}, function (err, user) {
             if (err) throw err;
-            res.json(dish);
+            res.json(user);
         });
     });
 
 userRouter.route('/:userId')
     .get(function (req, res, next) {
         User.findById(req.params.userId)
-            .exec(function (err, promotion) {
+            .exec(function (err, user) {
                 if (err) next(err);
-                res.json(promotion);
+                res.json(user);
             });
     })
 
@@ -34,9 +34,9 @@ userRouter.route('/:userId')
             $set: req.body
         }, {
             new: true
-        }, function (err, promotion) {
+        }, function (err, user) {
             if (err) next(err);
-            res.json(promotion);
+            res.json(user);
         });
     })
 

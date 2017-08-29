@@ -3,43 +3,45 @@
 angular.module('measureLife.services', ['ngResource'])
 .constant("baseURL", "https://192.168.1.159:30443/")
 // .constant("baseURL", "https://localhost:3443/")
-.factory('goalFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
-
-            return $resource(baseURL + "goals/:id", null, {
-                'update': {
-                    method: 'PUT'
-                }
-            });
-
-}])
-.factory('metricFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
-
-            return $resource(baseURL + "metrics/:id", null, {
-                'update': {
-                    method: 'PUT'
-                }
-            });
-
-}])
-.factory('reportFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
-
-            return $resource(baseURL + "reports/:id", null, {
-                'update': {
-                    method: 'PUT'
-                }
-            });
-
-}])
-.factory('templateFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
-
-            return $resource(baseURL + "templates/:id", null, {
-                'update': {
-                    method: 'PUT'
-                }
-            });
-
+.factory('goalFactory', ['$resource', 'baseURL', 
+  function ($resource, baseURL) {
+    return $resource(baseURL + "goals/:id", null, {
+        'update': {
+            method: 'PUT'
+        }
+      }
+    );
 }])
 
+.factory('metricFactory', ['$resource', 'baseURL', 
+  function ($resource, baseURL) {
+    return $resource(baseURL + "metrics/:id", null, {
+      'update': {
+          method: 'PUT'
+        }
+      }
+    );
+}])
+
+.factory('reportFactory', ['$resource', 'baseURL', 
+  function ($resource, baseURL) {
+    return $resource(baseURL + "reports/:id", null, {
+      'update': {
+          method: 'PUT'
+        }
+      }
+    );
+}])
+
+.factory('templateFactory', ['$resource', 'baseURL', 
+  function ($resource, baseURL) {
+    return $resource(baseURL + "templates/:id", null, {
+        'update': {
+            method: 'PUT'
+        }
+      }
+    );
+}])
 
 .factory('$localStorage', ['$window', function($window) {
   return {
@@ -61,7 +63,8 @@ angular.module('measureLife.services', ['ngResource'])
   }
 }])
 
-.factory('AuthFactory', ['$resource', '$http', '$localStorage', '$rootScope', 'baseURL', '$ionicPopup', function($resource, $http, $localStorage, $rootScope, baseURL, $ionicPopup){
+.factory('AuthFactory', ['$resource', '$http', '$localStorage', '$rootScope', 'baseURL', '$ionicPopup', 
+  function($resource, $http, $localStorage, $rootScope, baseURL, $ionicPopup){
     
     var authFac = {};
     var TOKEN_KEY = 'Token';
@@ -69,6 +72,11 @@ angular.module('measureLife.services', ['ngResource'])
     var username = '';
     var authToken = undefined;
     
+
+  authFac.getUserId =  function () {
+      var credentials = $localStorage.getObject(TOKEN_KEY,'{}');
+      return credentials._id;
+    }
 
   function loadUserCredentials() {
     var credentials = $localStorage.getObject(TOKEN_KEY,'{}');

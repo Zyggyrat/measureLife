@@ -14,35 +14,35 @@ reportRouter.route('/')
     .get(function (req, res, next) {
         Reports.findById(req.params.reportId)
             .populate('reports.postedBy')
-            .exec(function (err, user) {
+            .exec(function (err, report) {
                 if (err)
                     next(err);
-                res.json(user.reports);
+                res.json(report);
             });
     })
 
     .post(Verify.verifyOrdinaryUser, function (req, res, next) {
-        Reports.findById(req.params.reportId, function (err, user) {
+        Reports.findById(req.params.reportId, function (err, report) {
             if (err)
                 next(err);
             req.body.postedBy = req.decoded._id;
-            user.reports.push(req.body);
-            user.save(function (err, user) {
+            report.push(req.body);
+            report.save(function (err, report) {
                 if (err)
                     next(err);
                 console.log('Updated reports!');
-                res.json(user);
+                res.json(report);
             });
         });
     })
 
     .delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
-        Reports.findById(req.params.reportId, function (err, user) {
+        Reports.findById(req.params.reportId, function (err, report) {
             if (err) throw err;
-            for (var i = (user.reports.length - 1); i >= 0; i--) {
-                user.reports.id(user.reports[i]._id).remove();
+            for (var i = (report.length - 1); i >= 0; i--) {
+                report.id(report[i]._id).remove();
             }
-            user.save(function (err, result) {
+            report.save(function (err, result) {
                 if (err)
                     next(err);
                 res.writeHead(200, {
@@ -57,41 +57,41 @@ reportRouter.route('/:reportId')
     .get(function (req, res, next) {
         Reports.findById(req.params.reportId)
             .populate('reports.postedBy')
-            .exec(function (err, user) {
+            .exec(function (err, report) {
                 if (err) 
                     next(err);
-                res.json(user.reports.id(req.params.reportId));
+                res.json(report.id(req.params.reportId));
             });
     })
 
     .put(Verify.verifyOrdinaryUser, function (req, res, next) {
         // We delete the existing commment and insert the updated
         // comment as a new comment
-        Reports.findById(req.params.reportId, function (err, user) {
+        Reports.findById(req.params.reportId, function (err, report) {
             if (err) 
                 next(err);
-            user.reports.id(req.params.reportId).remove();
+            report.id(req.params.reportId).remove();
             req.body.postedBy = req.decoded._id;
-            user.reports.push(req.body);
-            user.save(function (err, user) {
+            report.push(req.body);
+            report.save(function (err, report) {
                                 if (err) 
                     next(err);
-                console.log('Updated Comments!');
-                res.json(user);
+                console.log('Updated Report!');
+                res.json(report);
             });
         });
     })
 
     .delete(Verify.verifyOrdinaryUser, function (req, res, next) {
-        Reports.findById(req.params.reportId, function (err, user) {
-            if (user.reports.id(req.params.reportId).postedBy !=
+        Reports.findById(req.params.reportId, function (err, report) {
+            if (report.id(req.params.reportId).postedBy !=
                 req.decoded._id) {
                 var err = new Error('You are not authorized to perform this operation!');
                 err.status = 403;
                 return next(err);
             }
-            user.reports.id(req.params.reportId).remove();
-            user.save(function (err, resp) {
+            report.id(req.params.reportId).remove();
+            report.save(function (err, resp) {
                 if (err) 
                     next(err);
                 res.json(resp);
