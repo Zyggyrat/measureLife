@@ -1,0 +1,1017 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"tenant",
+				"tenantUser"
+			],
+			[
+				"pri",
+				"privprivset"
+			],
+			[
+				"trans",
+				"transition"
+			],
+			[
+				"Nu",
+				"NULL"
+			],
+			[
+				"workf",
+				"workflowstatus"
+			],
+			[
+				"priv",
+				"privset"
+			],
+			[
+				"fa",
+				"FALSE"
+			],
+			[
+				"Is",
+				"IS_SYSTEM"
+			],
+			[
+				"P",
+				"PRIV_ID"
+			],
+			[
+				"Fea",
+				"FEATURE_ID"
+			],
+			[
+				"FILE",
+				"FILE_ID"
+			],
+			[
+				"AUTOMAT",
+				"NEXT_AUTOMATION_ID"
+			],
+			[
+				"SAM",
+				"smallint"
+			],
+			[
+				"SMAL",
+				"smallint"
+			],
+			[
+				"CREATED",
+				"CREATED_BY_USER_ID"
+			],
+			[
+				"Ve",
+				"VERSION"
+			],
+			[
+				"tas",
+				"taskconfig"
+			],
+			[
+				"N",
+				"NULL"
+			],
+			[
+				"SCHED",
+				"IX_SCHEDULE_ID"
+			],
+			[
+				"work",
+				"workflow"
+			],
+			[
+				"IN",
+				"INT"
+			],
+			[
+				"cmd",
+				"cmdfielddoctype"
+			],
+			[
+				"cmdfil",
+				"cmdfield"
+			],
+			[
+				"un",
+				"unknown"
+			],
+			[
+				"j",
+				"JOB_ID"
+			],
+			[
+				"cmdf",
+				"cmdfieldgroup"
+			],
+			[
+				"revi",
+				"revision"
+			],
+			[
+				"te",
+				"tenantuser"
+			],
+			[
+				"Value",
+				"VALUE"
+			],
+			[
+				"Mod",
+				"MODIFIED"
+			],
+			[
+				"me",
+				"MESSAGE"
+			],
+			[
+				"output",
+				"outputtype"
+			],
+			[
+				"cmdfie",
+				"cmdfield"
+			],
+			[
+				"De",
+				"DEFAULT"
+			],
+			[
+				"b",
+				"boolean"
+			],
+			[
+				"varchar",
+				"VARCHAR"
+			],
+			[
+				"int",
+				"INT"
+			],
+			[
+				"gr",
+				"grppriv"
+			],
+			[
+				"v_",
+				"v_current_group_ancestry"
+			],
+			[
+				"I",
+				"INT"
+			],
+			[
+				"v",
+				"v_current_group_id"
+			],
+			[
+				"L",
+				"LOOP"
+			],
+			[
+				"IF",
+				"IF"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 568,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app.js",
+			"settings":
+			{
+				"buffer_size": 2487,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bin/www",
+			"settings":
+			{
+				"buffer_size": 2217,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config.js",
+			"settings":
+			{
+				"buffer_size": 311,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/userRouter.js",
+			"settings":
+			{
+				"buffer_size": 23063,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/user.js",
+			"settings":
+			{
+				"buffer_size": 983,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/metric.js",
+			"settings":
+			{
+				"buffer_size": 778,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/report.js",
+			"settings":
+			{
+				"buffer_size": 639,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "var express = require('express');\nvar bodyParser = require('body-parser');\nvar mongoose = require('mongoose');\nvar Templates = require('../models/template');\nvar Verify = require('./verify');\nvar templateRouter = express.Router();\ntemplateRouter.use(bodyParser.json());\n\n///////////////\n// Templates //\n///////////////\n\ntemplateRouter.route('/')\n    .get(function (req, res, next) {\n        Templates.findById(req.params.userId)\n            .populate('templates.postedBy')\n            .exec(function (err, user) {\n                if (err)\n                    next(err);\n                res.json(templates);\n            });\n    })\n\n    .post(Verify.verifyOrdinaryUser, function (req, res, next) {\n        Templates.findById(req.params.userId, function (err, user) {\n            if (err)\n                next(err);\n            req.body.postedBy = req.decoded._id;\n            user.templates.push(req.body);\n            user.save(function (err, user) {\n                if (err)\n                    next(err);\n                console.log('Updated templates!');\n                res.json(user);\n            });\n        });\n    })\n\n    .delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {\n        Templates.findById(req.params.userId, function (err, user) {\n            if (err) throw err;\n            for (var i = (user.templates.length - 1); i >= 0; i--) {\n                user.templates.id(user.templates[i]._id).remove();\n            }\n            user.save(function (err, result) {\n                if (err)\n                    next(err);\n                res.writeHead(200, {\n                    'Content-Type': 'text/plain'\n                });\n                res.end('Deleted all templates!');\n            });\n        });\n    });\n\ntemplateRouter.route('/:templateId')\n    .get(function (req, res, next) {\n        Templates.findById(req.params.templateId)\n            .populate('templates.postedBy')\n            .exec(function (err, user) {\n                if (err) \n                    next(err);\n                res.json(user.templates.id(req.params.templateId));\n            });\n    })\n\n    .put(Verify.verifyOrdinaryUser, function (req, res, next) {\n        // We delete the existing commment and insert the updated\n        // comment as a new comment\n        Templates.findById(req.params.templateId, function (err, user) {\n            if (err) \n                next(err);\n            user.templates.id(req.params.templateId).remove();\n            req.body.postedBy = req.decoded._id;\n            user.templates.push(req.body);\n            user.save(function (err, user) {\n                                if (err) \n                    next(err);\n                console.log('Updated Comments!');\n                res.json(user);\n            });\n        });\n    })\n\n    .delete(Verify.verifyOrdinaryUser, function (req, res, next) {\n        Templates.findById(req.params.templateId, function (err, user) {\n            if (user.templates.id(req.params.templateId).postedBy !=\n                req.decoded._id) {\n                var err = new Error('You are not authorized to perform this operation!');\n                err.status = 403;\n                return next(err);\n            }\n            user.templates.id(req.params.templateId).remove();\n            user.save(function (err, resp) {\n                if (err) \n                    next(err);\n                res.json(resp);\n            });\n        });\n    });\n\nmodule.exports = templateRouter;\n",
+			"file": "routes/templateRouter.js",
+			"file_size": 3485,
+			"file_write_time": 131480188290000000,
+			"settings":
+			{
+				"buffer_size": 3480,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/template.js",
+			"settings":
+			{
+				"buffer_size": 557,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/reportsRouter.js",
+			"settings":
+			{
+				"buffer_size": 3418,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/teamRouter.js",
+			"settings":
+			{
+				"buffer_size": 3333,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/team.js",
+			"settings":
+			{
+				"buffer_size": 718,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 368.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: i",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 669.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/sarbour/Google Drive/Code/measureLife/repo/server",
+		"/Users/sarbour/Google Drive/Code/measureLife/repo/server/bin",
+		"/Users/sarbour/Google Drive/Code/measureLife/repo/server/models",
+		"/Users/sarbour/Google Drive/Code/measureLife/repo/server/routes"
+	],
+	"file_history":
+	[
+		"/Users/sarbour/Google Drive/Code/measureLife/repo/server/models/user.js",
+		"/Users/sarbour/Google Drive/Code/measureLife/repo/server/models/goal.js",
+		"/Users/sarbour/Google Drive/Code/measureLife/repo/server/models/measurement.js",
+		"/Users/sarbour/Google Drive/Code/measureLife/repo/server/models/chart.js",
+		"/Users/sarbour/Google Drive/Code/measureLife/repo/server/models/template.js",
+		"/Users/sarbour/Google Drive/Code/measureLife/repo/server/models/report.js",
+		"/Users/sarbour/Google Drive/Code/measureLife/repo/server/models/metric.js",
+		"/Users/sarbour/Desktop/Code/licensing/sphinx/password.txt",
+		"/Users/sarbour/Desktop/Code/jones-persistence/database/mysql/tenant-2-1-0.sql",
+		"/Users/sarbour/Documents/TruEdit/logs/TruEditModel.log.1",
+		"/Users/sarbour/Desktop/Code/jones-persistence/database/mysql/tesec-2-5-0-1.sql",
+		"/Users/sarbour/Desktop/Code/Sphinx/password.txt",
+		"/Users/sarbour/Desktop/Code/jones-persistence/database/mysql/tesec-init.sql",
+		"/Users/sarbour/Desktop/Code/jones-persistence/database/mysql/tenant-init.sql",
+		"/Users/sarbour/Desktop/Code/jones-persistence/database/mysql/tenant-2-5-0-1.sql",
+		"/Users/sarbour/Desktop/Code/jones-persistence/database/mysql/tenant-2-5-0.sql",
+		"/Users/sarbour/Desktop/Persistence_Mock_Insert.sql",
+		"/Users/sarbour/Desktop/Code/jones/CC_Clients/TruEditModel/source/TEM_enUS.fr",
+		"/Users/sarbour/Documents/TruEdit/logs/TruEditModel.log",
+		"/Users/sarbour/Desktop/Code/jones-persistence/database/mysql/tesec-2-1-0.sql",
+		"/Users/sarbour/Desktop/Code/jones/CC_Clients/TruEditModel/source/TEMID.h",
+		"/Users/sarbour/Desktop/Code/jones/CC_Clients/TruEditModel/source/TEMScriptProvider.cpp",
+		"/Users/sarbour/Desktop/Code/jones/CC_Clients/TruEditModel/source/TEUtils.cpp",
+		"/Users/sarbour/Desktop/Code/jones/CC_Clients/toolbox/exportUnlinkedTextFramesAsICML.jsx",
+		"/Users/sarbour/Library/Application Support/Sublime Text 3/Packages/User/Plain text.sublime-settings",
+		"/Users/sarbour/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/sarbour/Desktop/Code/jones/CC_Clients/TruEdit_Mac_Installer/Installer Assets/Scripts/uninstalltruedit.command",
+		"/Users/sarbour/Desktop/Code/jones/CC_Clients/TruEditModel/source/TEMScriptingDefs.h",
+		"/Users/sarbour/Desktop/Code/jones/CC_Clients/TruEditModel/source/ITEZipUtils.h",
+		"/Users/sarbour/.slate",
+		"/Users/sarbour/Desktop/Code/custdev/TW-91656-MediaSource-K4Interfaces/trunk/IBRW2K4/IBRW2K4.bat",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/aboutTEToolbox.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/configFootnoteOptions.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/exportDPSArticle.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/exportEPS.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/exportFlash.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/exportHTML.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/exportIDML.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/exportInteractivePDF.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/exportJPG.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/exportPackage.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/exportPDF.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/exportPNG.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/exportPreflightReport.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/exportPrint.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/exportSWF.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/exportUnlinkedTextFramesAsICML.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/exportXML.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/notesReportPDF.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/hyperlinksApplyTag.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/hyperlinksConvertToTags.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/hyperlinksFindAndCreate.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/notesAddUserName.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/notesRemoveUserName.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/notesReportText.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/taggingMapStylesToTags.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/transformUsingSavedQueries.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/watermarkApply.jsx",
+		"/Users/sarbour/Desktop/Code/jones/toolbox/watermarkRemove.jsx",
+		"/Users/sarbour/Downloads/03Feb2016/index.html",
+		"/Users/sarbour/Desktop/Code/jones/database/mysql/tesec-2-1-0.sql",
+		"/Users/sarbour/Desktop/Code/jones/database/mysql/tenant-2-1-0.sql"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"if (err) throw err;",
+			"fetchMode",
+			"Wara",
+			"rename",
+			"tesec",
+			"Tenant_0001",
+			"tesec",
+			"job",
+			"MakeAbsolutePath",
+			"Zip",
+			"zip",
+			"job",
+			"kNull",
+			"IsTruAuthorProfile",
+			"profile",
+			"CanProfileHaveAssets",
+			"revision",
+			"\t\tMODIFIED datetime DEFAULT NULL,",
+			"NOW",
+			"grppriv",
+			"client",
+			"grp",
+			"Permission",
+			"Permissions",
+			"outputtype",
+			"file",
+			"DOCTYPE",
+			"OUTPUTTYPE",
+			" file",
+			"workfl",
+			"grp",
+			"grppriv",
+			"5645",
+			"grp",
+			"priv",
+			"cmdvalue",
+			"cmdfield",
+			"cmdvalue",
+			"cmdfield",
+			"usergrp",
+			"query",
+			"usrgrp",
+			"file",
+			"mediatype",
+			"criteria",
+			"clientpref",
+			"var myPrefSet = \"[Default]\";",
+			"        var myPrefSet = \"[Default]\";",
+			"automation",
+			"cmdvalue",
+			"MODIFIED timestamp DEFAULT CURRENT_TIMESTAMP",
+			"cmdfielddoctype",
+			"Schedule",
+			"schedule",
+			"mimetype",
+			"INT",
+			"VARCHAR",
+			"MODIFIED datetime NOT NULL,",
+			")\n",
+			"TASKFILE",
+			"OUTPUTFILE",
+			"workflow",
+			"ASSIGMENT",
+			"ASSIGNMENT",
+			"mediat",
+			".doc'",
+			".doc",
+			".icml",
+			".doc",
+			"profile_ID",
+			"usergroup"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"dishId",
+			"dish",
+			"Promotions",
+			"router",
+			"User",
+			"if (err) next(err);",
+			"TENANT_DB_NAME",
+			"SECURITY_DB_NAME",
+			"\t\tMODIFIED datetime NOT NULL,",
+			"Privilege",
+			"Privileges",
+			"DOCTYPE",
+			"var myPrefSet = (app.scriptArgs.get(\"prefSet\") != \"\") ? app.scriptArgs.get(\"prefSet\") : \"[Default]\";",
+			"MODIFIED datetime DEFAULT NULL",
+			"int",
+			"varchar",
+			"MODIFIED timestamp DEFAULT CURRENT_TIMESTAMP,",
+			"QUERYCRITERIA",
+			"TASKCONFIGFILE",
+			"ACCESS",
+			"grp"
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 10,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 568,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13,
+								35
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/zzz A File Icon zzz/aliases/JSON (NPM).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2487,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1529,
+								1529
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 300.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "bin/www",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2217,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								328,
+								328
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "config.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 311,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								113,
+								113
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "routes/userRouter.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 23063,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17867,
+								17867
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7664.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "models/user.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 983,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								167,
+								167
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "models/metric.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 778,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "models/report.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 639,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "routes/templateRouter.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3480,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								595,
+								595
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "models/template.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 557,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								464,
+								101
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "routes/reportsRouter.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3418,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								417,
+								459
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 97.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "routes/teamRouter.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3333,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								557,
+								557
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "models/team.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 718,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								561,
+								561
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "",
+	"project": "measureLife.server.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 357.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 918.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 260.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
