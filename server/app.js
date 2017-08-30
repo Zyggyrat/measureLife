@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var authenticate = require('./authenticate');
-
+var cors = require('cors');
 
 var config = require('./config');
 
@@ -21,11 +21,14 @@ db.once('open', function () {
 
 var routes = require('./routes/index');
 var userRouter = require('./routes/userRouter');
+var goalsRouter = require('./routes/goalsRouter');
+var metricsRouter = require('./routes/metricsRouter');
 var reportsRouter = require('./routes/reportsRouter');
 var templateRouter = require('./routes/templateRouter');
 var teamRouter = require('./routes/teamRouter');
 
 var app = express();
+app.use(cors());
 
 // Secure traffic only
 app.all('*', function (req, res, next) {
@@ -55,6 +58,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', userRouter);
+app.use('/goals', goalsRouter);
+app.use('/metrics', metricsRouter);
 app.use('/reports', reportsRouter);
 app.use('/templates', templateRouter);
 app.use('/teams', teamRouter);

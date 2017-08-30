@@ -1,6 +1,6 @@
 angular.module('measureLife.controllers', [])
 
-    .controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, $localStorage, $ionicPlatform, $cordovaCamera, $cordovaImagePicker, AuthFactory, $resource, baseURL) {
+    .controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, $localStorage, $ionicPlatform, $ionicPopup, $cordovaCamera, $cordovaImagePicker, AuthFactory, $resource, baseURL) {
 
         // With the new view caching in Ionic, Controllers are only called
         // when they are recreated or on app start, instead of every page change.
@@ -55,48 +55,56 @@ angular.module('measureLife.controllers', [])
             $scope.username = '';
         };
 
-        // Create the login modal that we will use later
+        $scope.goalData = {};
+
+        // Create the goalCreateModal that we will use later
         $ionicModal.fromTemplateUrl('templates/goalCreate.html', {
             scope: $scope
         }).then(function(modal) {
-            $scope.modal = modal;
+            $scope.goalCreateModal = modal;
         });
 
-        // Triggered in the login modal to close it
+        // Triggered in the goalCreateModal to close it
         $scope.closeCreateGoal = function() {
-            $scope.modal.hide();
+            $scope.goalCreateModal.hide();
         };
 
-        // Open the login modal
+        // Open the goalCreateModal
         $scope.doCreateGoal = function() {
-            $scope.modal.show();
+            $scope.goalCreateModal.show();
         };
 
         // Perform the login action when the user submits the login form
-        $scope.createGoal = function(goalData) {
+        $scope.createGoal = function() {
             // var userId = AuthFactory.getUserId();
             // goalData.postedBy = userId;
-            console.log('Creating Goal', goalData);
-            console.log("accessing " + baseURL + " goals");
+            
+            console.log('Creating Goal', $scope.goalData.username + " : " + $scope.goalData.description);
+            console.log("accessing " + baseURL + "goals");
 
             $resource(baseURL + "goals")
-                .save(goalData,
+                .save($scope.goalData,
                     function(response) {
                         $rootScope.$broadcast('createGoal:Successful');
                     },
                     function(response) {
+                        if(response.status == 403) {
+                            var forbiddenMessage = '<div><p>' + "Please login to create a goal!" + '</p></div>';
 
-                        var message = '<div><p>' + response.data.err.message +
-                            '</p><p>' + response.data.err.name + '</p></div>';
+                            var forbiddenAlertPopup = $ionicPopup.alert({
+                                title: '<h4>Create Goal Failed!</h4>',
+                                template: forbiddenMessage
+                            });
+                        }
+                        if (response.data.err !== undefined) {
+                            var message = '<div><p>' + response.data.err.message +
+                                '</p><p>' + response.data.err.name + '</p></div>';
 
-                        var alertPopup = $ionicPopup.alert({
-                            title: '<h4>Create Goal Failed!</h4>',
-                            template: message
-                        });
-
-                        alertPopup.then(function(res) {
-                            console.log('Create Goal Failed!');
-                        });
+                            var alertPopup = $ionicPopup.alert({
+                                title: '<h4>Create Goal Failed!</h4>',
+                                template: message
+                            });
+                        }
                     }
 
                 );
