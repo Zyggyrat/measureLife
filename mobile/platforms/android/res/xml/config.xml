@@ -22,12 +22,13 @@
     <author email="sarbour@stephenarbour.com" href="http://stephenarbour.com/">
       Stephen Arbour
     </author>
-    <content original-src="index.html" src="http://192.168.1.159:8100" />
+    <content original-src="index.html" src="http://172.30.0.17:8100" />
     <access origin="*" />
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <allow-navigation href="http://172.18.21.249:8100" />
     <allow-navigation href="http://192.168.1.159:8100" />
     <allow-navigation href="http://10.11.3.253:8100" />
+    <allow-navigation href="http://172.30.0.17:8100" />
     <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
     <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />

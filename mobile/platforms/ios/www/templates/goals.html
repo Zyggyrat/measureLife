@@ -1,6 +1,18 @@
-<ion-view view-title="settings">
-	<ion-content class="goals">
-		<p>Goals
-		</p>
-	</ion-content>
+<ion-view view-title="Goals">
+    <ion-content>
+        <ion-nav-buttons side="secondary">
+            <div class="buttons">
+                <button class="button button-icon icon ion-ios-minus-outline" ng-click="toggleDelete()" /></button>
+            </div>
+        </ion-nav-buttons>
+        <button class="button button-block button-positive" ng-click="doCreateGoal()" type="button">Create</button>
+        <ion-list>
+            <ion-item ng-repeat="goal in goals" href="#/app/goals/{{goal.id}}" class="item-thumbnail-left">
+                <h2>{{goal.name}}</h2>
+                <p>{{goal.description}}</p>
+                <ion-option-button class="button-assertive icon ion-plus-circled" ng-click="addMetric({{goal.id}})">
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
 </ion-view>

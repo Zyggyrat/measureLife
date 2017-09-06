@@ -18,9 +18,13 @@ angular.module('measureLife', ['ionic', 'ngCordova', 'measureLife.controllers','
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-      $timeout(function(){
-                $cordovaSplashscreen.hide();
-      },2000);
+    $timeout(function(){
+      try {
+        $cordovaSplashscreen.hide();
+      } catch(e) {
+        console.log(e.stack);
+      }
+    },2000);
   });
     
     $rootScope.$on('loading:show', function () {
@@ -52,12 +56,7 @@ angular.module('measureLife', ['ionic', 'ngCordova', 'measureLife.controllers','
       templateUrl: 'templates/sidebar.html',
       controller: 'AppCtrl'
     })
-    .state('app.homeTabs', {
-      url: '/homeTabs',
-      abstract: true,
-      templateUrl: 'templates/homeTabs.html'
-    })
-    .state('app.home.home', {
+    .state('app.home', {
       url: '/home',
       views: {
         'mainContent': {
@@ -65,6 +64,11 @@ angular.module('measureLife', ['ionic', 'ngCordova', 'measureLife.controllers','
           controller: 'dashboardController'
         }
       }
+    })
+    .state('app.homeTabs', {
+      url: '/homeTabs',
+      abstract: true,
+      templateUrl: 'templates/homeTabs.html'
     })
     .state('app.home.dataEntry', {
       url: '/dataEntry',
@@ -95,11 +99,10 @@ angular.module('measureLife', ['ionic', 'ngCordova', 'measureLife.controllers','
     })
     .state('app.reports', {
         url: '/reports',
-        cache:false,
         views: {
           'mainContent': {
             templateUrl: 'templates/reports.html',
-            controller:'favoritesController'
+            controller:'reportsController'
         }
       }
     })
@@ -114,7 +117,6 @@ angular.module('measureLife', ['ionic', 'ngCordova', 'measureLife.controllers','
       })
     .state('app.settings', {
         url: '/settings',
-        cache:false,
         views: {
           'mainContent': {
             templateUrl: 'templates/settings.html',

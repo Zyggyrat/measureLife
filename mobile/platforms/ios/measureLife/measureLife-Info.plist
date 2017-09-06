@@ -61,14 +61,24 @@
           <key>NSExceptionAllowsInsecureHTTPLoads</key>
           <true/>
         </dict>
+        <key>10.11.3.253</key>
+        <dict>
+          <key>NSExceptionAllowsInsecureHTTPLoads</key>
+          <true/>
+        </dict>
+        <key>172.30.0.17</key>
+        <dict>
+          <key>NSExceptionAllowsInsecureHTTPLoads</key>
+          <true/>
+        </dict>
       </dict>
       <key>NSAllowsArbitraryLoads</key>
       <true/>
     </dict>
     <key>NSCameraUsageDescription</key>
-    <string></string>
+    <string/>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string></string>
+    <string/>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string/>
   </dict>

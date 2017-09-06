@@ -96,7 +96,7 @@ angular.module('measureLife.controllers', [])
                                 template: forbiddenMessage
                             });
                         }
-                        if (response.data.err !== undefined) {
+                        if (response.data !== null && response.data.err !== undefined) {
                             var message = '<div><p>' + response.data.err.message +
                                 '</p><p>' + response.data.err.name + '</p></div>';
 
@@ -154,45 +154,45 @@ angular.module('measureLife.controllers', [])
         });
 
         $ionicPlatform.ready(function() {
-            var options = {
-                quality: 50,
-                destinationType: Camera.DestinationType.DATA_URL,
-                sourceType: Camera.PictureSourceType.CAMERA,
-                allowEdit: true,
-                encodingType: Camera.EncodingType.JPEG,
-                targetWidth: 100,
-                targetHeight: 100,
-                popoverOptions: CameraPopoverOptions,
-                saveToPhotoAlbum: false
-            };
+            // var options = {
+            //     quality: 50,
+            //     destinationType: Camera.DestinationType.DATA_URL,
+            //     sourceType: Camera.PictureSourceType.CAMERA,
+            //     allowEdit: true,
+            //     encodingType: Camera.EncodingType.JPEG,
+            //     targetWidth: 100,
+            //     targetHeight: 100,
+            //     popoverOptions: CameraPopoverOptions,
+            //     saveToPhotoAlbum: false
+            // };
 
-            $scope.takePicture = function() {
-                $cordovaCamera.getPicture(options).then(function(imageData) {
-                    $scope.registration.imgSrc = "data:image/jpeg;base64," + imageData;
-                }, function(err) {
-                    console.log(err);
-                });
-                $scope.registerform.show();
-            };
+            // $scope.takePicture = function() {
+            //     $cordovaCamera.getPicture(options).then(function(imageData) {
+            //         $scope.registration.imgSrc = "data:image/jpeg;base64," + imageData;
+            //     }, function(err) {
+            //         console.log(err);
+            //     });
+            //     $scope.registerform.show();
+            // };
 
-            var pickoptions = {
-                maximumImagesCount: 1,
-                width: 100,
-                height: 100,
-                quality: 50
-            };
+            // var pickoptions = {
+            //     maximumImagesCount: 1,
+            //     width: 100,
+            //     height: 100,
+            //     quality: 50
+            // };
 
-            $scope.pickImage = function() {
-                $cordovaImagePicker.getPictures(pickoptions)
-                    .then(function(results) {
-                        for (var i = 0; i < results.length; i++) {
-                            console.log('Image URI: ' + results[i]);
-                            $scope.registration.imgSrc = results[0];
-                        }
-                    }, function(error) {
-                        // error getting photos
-                    });
-            };
+            // $scope.pickImage = function() {
+            //     $cordovaImagePicker.getPictures(pickoptions)
+            //         .then(function(results) {
+            //             for (var i = 0; i < results.length; i++) {
+            //                 console.log('Image URI: ' + results[i]);
+            //                 $scope.registration.imgSrc = results[0];
+            //             }
+            //         }, function(error) {
+            //             // error getting photos
+            //         });
+            // };
 
         });
     })

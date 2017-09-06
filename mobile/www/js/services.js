@@ -117,18 +117,15 @@ angular.module('measureLife.services', ['ngResource'])
          },
          function(response){
             isAuthenticated = false;
-          
-            var message = '<div><p>' +  response.data.err.message + 
+            if (response.data !== null && response.data.err !== undefined) {
+              var message = '<div><p>' +  response.data.err.message + 
                 '</p><p>' + response.data.err.name + '</p></div>';
-          
-             var alertPopup = $ionicPopup.alert({
+
+              var alertPopup = $ionicPopup.alert({
                   title: '<h4>Login Failed!</h4>',
                   template: message
               });
-
-              alertPopup.then(function(res) {
-                  console.log('Login Failed!');
-              });
+            };
          }
       
       );
