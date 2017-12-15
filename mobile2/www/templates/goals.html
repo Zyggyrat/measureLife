@@ -1,0 +1,24 @@
+<ion-view view-title="Goals">
+    <div class="tabs-striped tabs-color-royal">
+        <ul class="tabs">
+            <li ng-class="{active:isSelected(1)}" class="tab-item">
+                <a ng-click="select(1)">Goals</a></li>
+            <li ng-class="{active:isSelected(2)}" class="tab-item">
+                <a ng-click="select(2)">Mind</a></li>
+            <li ng-class="{active:isSelected(3)}" class="tab-item">
+                <a ng-click="select(3)">Body</a></li>
+            <li ng-class="{active:isSelected(4)}" class="tab-item">
+                <a ng-click="select(4)">Soul</a></li>
+        </ul>
+    </div>
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="goal in goals | filter:{category: filtText}" href="#/app/goals/{{goal._id}}">
+                <h2>{{goal.name}}<span class="badge badge-calm">{{goal.category}}</span></h2>
+                <p>{{goal.description}}</p>
+                <ion-option-button class="button-assertive icon ion-plus-circled" ng-click="selectGoal(goal._id)">
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

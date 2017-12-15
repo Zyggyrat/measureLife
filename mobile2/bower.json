@@ -1,0 +1,10 @@
+{
+  "name": "measureLife",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.1.1"
+  },
+  "dependencies": {
+    "ngCordova": "^0.1.27-alpha"
+  }
+}

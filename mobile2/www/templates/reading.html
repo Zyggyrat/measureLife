@@ -1,0 +1,28 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Add Reading</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeReadingForm()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form id="readingForm" name="readingForm" ng-submit="submitReading()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Value</span>
+          <textarea type="text" ng-model="myreading.value"></textarea>
+        </label>
+        <label class="item item-input item-select">
+          <span class="input-label">Measurement Unit</span>
+            <select ng-model="myreading.measurementUnit">
+                <option ng-repeat="unit in units" value="{{unit}}">{{unit}}</option>
+            </select>
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Submit</button>
+        </label>
+        </li>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

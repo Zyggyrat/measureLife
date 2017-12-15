@@ -23,8 +23,10 @@ goalRouter.route('/')
 
     .post(Verify.verifyOrdinaryUser, function (req, res, next) {
         Goals.create(req.body, function (err, goal) {
-            if (err) 
+            if (err) {
+                console.log('Goal not created with err: ' + err);
                 next(err);
+            }
             var id = goal._id;
             console.log('Goal created with id: ' + id);
             res.status(200).send('Added the goal with id: ' + id);

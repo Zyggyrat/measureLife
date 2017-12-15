@@ -67,6 +67,7 @@ userRouter.route('/:userId/goals')
             if (err)
                 next(err);
             req.body.postedBy = req.decoded._id;
+            console.log("user: " + user);
             user.goals.push(req.body);
             user.save(function (err, user) {
                 if (err)
@@ -94,12 +95,12 @@ userRouter.route('/:userId/goals')
         });
     });
 
-userRouter.route('/:goalId/goals/:goalId')
+userRouter.route('/:userId/goals/:goalId')
     .get(function (req, res, next) {
         User.findById(req.params.goalId)
             .populate('goals.postedBy')
             .exec(function (err, user) {
-                if (err) 
+                if (err)
                     next(err);
                 res.json(user.goals.id(req.params.goalId));
             });
@@ -109,13 +110,13 @@ userRouter.route('/:goalId/goals/:goalId')
         // We delete the existing commment and insert the updated
         // comment as a new comment
         Dishes.findById(req.params.goalId, function (err, user) {
-            if (err) 
+            if (err)
                 next(err);
             user.goals.id(req.params.goalId).remove();
             req.body.postedBy = req.decoded._id;
             user.goals.push(req.body);
             user.save(function (err, user) {
-                if (err) 
+                if (err)
                     next(err);
                 console.log('Updated Goals!');
                 res.json(user);
@@ -133,7 +134,7 @@ userRouter.route('/:goalId/goals/:goalId')
             }
             user.goals.id(req.params.goalId).remove();
             user.save(function (err, resp) {
-                if (err) 
+                if (err)
                     next(err);
                 res.json(resp);
             });
@@ -189,7 +190,7 @@ userRouter.route('/:goalId/goals/:goalId/metrics/:metricId')
         User.findById(req.params.goalId)
             .populate('goals.postedBy')
             .exec(function (err, user) {
-                if (err) 
+                if (err)
                     next(err);
                 res.json(user.goals.id(req.params.goalId));
             });
@@ -199,13 +200,13 @@ userRouter.route('/:goalId/goals/:goalId/metrics/:metricId')
         // We delete the existing commment and insert the updated
         // comment as a new comment
         Dishes.findById(req.params.goalId, function (err, user) {
-            if (err) 
+            if (err)
                 next(err);
             user.goals.id(req.params.goalId).remove();
             req.body.postedBy = req.decoded._id;
             user.goals.push(req.body);
             user.save(function (err, user) {
-                if (err) 
+                if (err)
                     next(err);
                 console.log('Updated Goals!');
                 res.json(user);
@@ -223,7 +224,7 @@ userRouter.route('/:goalId/goals/:goalId/metrics/:metricId')
             }
             user.goals.id(req.params.goalId).remove();
             user.save(function (err, resp) {
-                if (err) 
+                if (err)
                     next(err);
                 res.json(resp);
             });
@@ -279,7 +280,7 @@ userRouter.route('/:goalId/goals/:goalId/metrics/:metricId/measurements/:measure
         User.findById(req.params.goalId)
             .populate('goals.postedBy')
             .exec(function (err, user) {
-                if (err) 
+                if (err)
                     next(err);
                 res.json(user.goals.id(req.params.goalId));
             });
@@ -289,13 +290,13 @@ userRouter.route('/:goalId/goals/:goalId/metrics/:metricId/measurements/:measure
         // We delete the existing commment and insert the updated
         // comment as a new comment
         Dishes.findById(req.params.goalId, function (err, user) {
-            if (err) 
+            if (err)
                 next(err);
             user.goals.id(req.params.goalId).remove();
             req.body.postedBy = req.decoded._id;
             user.goals.push(req.body);
             user.save(function (err, user) {
-                if (err) 
+                if (err)
                     next(err);
                 console.log('Updated Goals!');
                 res.json(user);
@@ -313,7 +314,7 @@ userRouter.route('/:goalId/goals/:goalId/metrics/:metricId/measurements/:measure
             }
             user.goals.id(req.params.goalId).remove();
             user.save(function (err, resp) {
-                if (err) 
+                if (err)
                     next(err);
                 res.json(resp);
             });
@@ -372,7 +373,7 @@ userRouter.route('/:userId/metrics/:metricId')
         User.findById(req.params.metricId)
             .populate('metrics.postedBy')
             .exec(function (err, user) {
-                if (err) 
+                if (err)
                     next(err);
                 res.json(user.metrics.id(req.params.metricId));
             });
@@ -382,13 +383,13 @@ userRouter.route('/:userId/metrics/:metricId')
         // We delete the existing commment and insert the updated
         // comment as a new comment
         Dishes.findById(req.params.metricId, function (err, user) {
-            if (err) 
+            if (err)
                 next(err);
             user.metrics.id(req.params.metricId).remove();
             req.body.postedBy = req.decoded._id;
             user.metrics.push(req.body);
             user.save(function (err, user) {
-                                if (err) 
+                                if (err)
                     next(err);
                 console.log('Updated Comments!');
                 res.json(user);
@@ -406,7 +407,7 @@ userRouter.route('/:userId/metrics/:metricId')
             }
             user.metrics.id(req.params.metricId).remove();
             user.save(function (err, resp) {
-                if (err) 
+                if (err)
                     next(err);
                 res.json(resp);
             });
@@ -465,7 +466,7 @@ userRouter.route('/:userId/reports/:reportId')
         User.findById(req.params.reportId)
             .populate('reports.postedBy')
             .exec(function (err, user) {
-                if (err) 
+                if (err)
                     next(err);
                 res.json(user.reports.id(req.params.reportId));
             });
@@ -475,13 +476,13 @@ userRouter.route('/:userId/reports/:reportId')
         // We delete the existing commment and insert the updated
         // comment as a new comment
         Dishes.findById(req.params.reportId, function (err, user) {
-            if (err) 
+            if (err)
                 next(err);
             user.reports.id(req.params.reportId).remove();
             req.body.postedBy = req.decoded._id;
             user.reports.push(req.body);
             user.save(function (err, user) {
-                                if (err) 
+                                if (err)
                     next(err);
                 console.log('Updated reports!');
                 res.json(user);
@@ -499,7 +500,7 @@ userRouter.route('/:userId/reports/:reportId')
             }
             user.reports.id(req.params.reportId).remove();
             user.save(function (err, resp) {
-                if (err) 
+                if (err)
                     next(err);
                 res.json(resp);
             });
@@ -558,7 +559,7 @@ userRouter.route('/:userId/templates/:templateId')
         User.findById(req.params.templateId)
             .populate('templates.postedBy')
             .exec(function (err, user) {
-                if (err) 
+                if (err)
                     next(err);
                 res.json(user.templates.id(req.params.templateId));
             });
@@ -568,13 +569,13 @@ userRouter.route('/:userId/templates/:templateId')
         // We delete the existing commment and insert the updated
         // comment as a new comment
         Dishes.findById(req.params.templateId, function (err, user) {
-            if (err) 
+            if (err)
                 next(err);
             user.templates.id(req.params.templateId).remove();
             req.body.postedBy = req.decoded._id;
             user.templates.push(req.body);
             user.save(function (err, user) {
-                                if (err) 
+                                if (err)
                     next(err);
                 console.log('Updated Comments!');
                 res.json(user);
@@ -592,7 +593,7 @@ userRouter.route('/:userId/templates/:templateId')
             }
             user.templates.id(req.params.templateId).remove();
             user.save(function (err, resp) {
-                if (err) 
+                if (err)
                     next(err);
                 res.json(resp);
             });
@@ -602,8 +603,9 @@ userRouter.route('/:userId/templates/:templateId')
 /////////////////////////////////////
 // Registration and Authentication //
 /////////////////////////////////////
- 
+
 userRouter.post('/register', function (req, res) {
+    console.log("Registering user:" + req.body.username);
     User.register(new User({
             username: req.body.username
         }),
@@ -623,7 +625,8 @@ userRouter.post('/register', function (req, res) {
             user.save(function (err, user) {
                 passport.authenticate('local')(req, res, function () {
                     return res.status(200).json({
-                        status: 'Registration Successful!'
+                        status: 'Registration Successful!',
+                        id: user._id
                     });
                 });
             });
@@ -652,7 +655,8 @@ userRouter.route('/login')
                 res.status(200).json({
                     status: 'Login successful!',
                     success: true,
-                    token: token
+                    token: token,
+                    id: user._id
                 });
             });
         })(req, res, next);
@@ -660,10 +664,10 @@ userRouter.route('/login')
 
 userRouter.route('/logout')
     .get(function (req, res) {
-        req.logout();
         res.status(200).json({
             status: 'Bye!'
         });
+        req.logout();
     });
 
 userRouter.get('/facebook', passport.authenticate('facebook'),

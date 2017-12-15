@@ -76,13 +76,13 @@ angular.module('measureLife.controllers', [])
 
         // Perform the login action when the user submits the login form
         $scope.createGoal = function() {
-            // var userId = AuthFactory.getUserId();
-            // goalData.postedBy = userId;
-            
-            console.log('Creating Goal', $scope.goalData.username + " : " + $scope.goalData.description);
+            var userId = AuthFactory.getUserId();
+            $scope.goalData.postedBy = userId;
+
+            console.log('Creating Goal ', $scope.goalData.name + " : " + $scope.goalData.description);
             console.log("accessing " + baseURL + "goals");
 
-            $resource(baseURL + "goals")
+            $resource(baseURL + "users/" + userId + "/goals")
                 .save($scope.goalData,
                     function(response) {
                         $rootScope.$broadcast('createGoal:Successful');
@@ -154,45 +154,6 @@ angular.module('measureLife.controllers', [])
         });
 
         $ionicPlatform.ready(function() {
-            // var options = {
-            //     quality: 50,
-            //     destinationType: Camera.DestinationType.DATA_URL,
-            //     sourceType: Camera.PictureSourceType.CAMERA,
-            //     allowEdit: true,
-            //     encodingType: Camera.EncodingType.JPEG,
-            //     targetWidth: 100,
-            //     targetHeight: 100,
-            //     popoverOptions: CameraPopoverOptions,
-            //     saveToPhotoAlbum: false
-            // };
-
-            // $scope.takePicture = function() {
-            //     $cordovaCamera.getPicture(options).then(function(imageData) {
-            //         $scope.registration.imgSrc = "data:image/jpeg;base64," + imageData;
-            //     }, function(err) {
-            //         console.log(err);
-            //     });
-            //     $scope.registerform.show();
-            // };
-
-            // var pickoptions = {
-            //     maximumImagesCount: 1,
-            //     width: 100,
-            //     height: 100,
-            //     quality: 50
-            // };
-
-            // $scope.pickImage = function() {
-            //     $cordovaImagePicker.getPictures(pickoptions)
-            //         .then(function(results) {
-            //             for (var i = 0; i < results.length; i++) {
-            //                 console.log('Image URI: ' + results[i]);
-            //                 $scope.registration.imgSrc = results[0];
-            //             }
-            //         }, function(error) {
-            //             // error getting photos
-            //         });
-            // };
 
         });
     })
@@ -212,7 +173,7 @@ angular.module('measureLife.controllers', [])
         }
     ])
 
-    .controller('dataEntryController', ['$scope', 'metricFactory', 'baseURL', '$ionicListDelegate', '$ionicPlatform', '$cordovaLocalNotification', '$cordovaToast',
+    .controller('dataEntryController', ['$scope', 'reportFactory', 'metricFactory', 'baseURL', '$ionicListDelegate', '$ionicPlatform', '$cordovaLocalNotification', '$cordovaToast',
         function($scope, metricFactory, baseURL, $ionicListDelegate, $ionicPlatform, $cordovaLocalNotification, $cordovaToast) {
 
             $scope.baseURL = baseURL;
@@ -230,20 +191,73 @@ angular.module('measureLife.controllers', [])
         }
     ])
 
-    .controller('goalsController', ['$scope', 'goalFactory', 'baseURL', '$ionicListDelegate', '$ionicPlatform', '$cordovaLocalNotification', '$cordovaToast',
-        function($scope, goalFactory, baseURL, $ionicListDelegate, $ionicPlatform, $cordovaLocalNotification, $cordovaToast) {
+    // .controller('userController', ['$scope', 'AuthFactory', 'baseURL', '$ionicListDelegate', '$ionicPlatform', '$cordovaLocalNotification', '$cordovaToast',
+    //     function($scope, authFactory, baseURL, $ionicListDelegate, $ionicPlatform, $cordovaLocalNotification, $cordovaToast) {
 
-            $scope.baseURL = baseURL;
+    //         $scope.baseURL = baseURL;
+    //         $scope.tab = 1;
+    //         $scope.filtText = '';
+    //         $scope.showDetails = false;
+
+    //         AuthFactory.query(
+    //             function(response) {
+    //                 $scope.user = response;
+    //             },
+    //             function(response) {});
+
+    //     }
+    // ])
+
+    .controller('goalsController', ['$scope', 'goalFactory', 'AuthFactory', 'baseURL', '$ionicListDelegate', '$ionicPlatform', '$cordovaLocalNotification', '$cordovaToast',
+        function($scope, goalFactory, authFactory, baseURL, $ionicListDelegate, $ionicPlatform, $cordovaLocalNotification, $cordovaToast) {
+
+            var userId = authFactory.getUserId();
+
+            $scope.baseURL = baseURL + "users/" + userId;
             $scope.tab = 1;
             $scope.filtText = '';
             $scope.showDetails = false;
-
 
             goalFactory.query(
                 function(response) {
                     $scope.goals = response;
                 },
                 function(response) {});
+
+            $scope.createGoal = function () {
+                console.log('Creating goal', $scope.createGoal);
+                $scope.goalData.name = $scope.createGoal.name;
+                $scope.goalData.description = $scope.createGoal.description;
+                goalFactory.createGoal($scope.createGoal);
+            };
+
+            $scope.toggleDelete = function () {
+                $scope.shouldShowDelete = !$scope.shouldShowDelete;
+                console.log($scope.shouldShowDelete);
+            }
+
+            $scope.deleteGoal = function (goalId) {
+
+                var confirmPopup = $ionicPopup.confirm({
+                    title: '<h3>Confirm Delete</h3>',
+                    template: '<p>Are you sure you want to delete this goal?</p>'
+                });
+
+                confirmPopup.then(function (res) {
+                    if (res) {
+                        console.log('Ok to delete');
+                        goalFactory.delete({id: goalId});
+
+                       $state.go($state.current, {}, {reload: true});
+                       // $window.location.reload();
+                    } else {
+                        console.log('Canceled delete');
+                    }
+                });
+                $scope.shouldShowDelete = false;
+
+
+            }
 
         }
     ])
