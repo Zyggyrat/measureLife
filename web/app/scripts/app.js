@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('confusionApp', ['ui.router','ngResource','ngDialog'])
+angular.module('measureLifeApp', ['ui.router','ngResource','ngDialog'])
 .config(function($stateProvider, $urlRouterProvider) {
         $stateProvider
-        
+
             // route for the home page
             .state('app', {
                 url:'/',
@@ -22,62 +22,40 @@ angular.module('confusionApp', ['ui.router','ngResource','ngDialog'])
                 }
 
             })
-        
+
             // route for the aboutus page
             .state('app.aboutus', {
                 url:'aboutus',
                 views: {
                     'content@': {
                         templateUrl : 'views/aboutus.html',
-                        controller  : 'AboutController'                  
-                    }
-                }
-            })
-        
-            // route for the contactus page
-            .state('app.contactus', {
-                url:'contactus',
-                views: {
-                    'content@': {
-                        templateUrl : 'views/contactus.html',
-                        controller  : 'ContactController'                  
+                        controller  : 'AboutController'
                     }
                 }
             })
 
-            // route for the menu page
-            .state('app.menu', {
-                url: 'menu',
+            // route for the goals page
+            .state('app.goals', {
+                url: 'goals',
                 views: {
                     'content@': {
-                        templateUrl : 'views/menu.html',
-                        controller  : 'MenuController'
+                        templateUrl : 'views/goals.html',
+                        controller  : 'GoalsController'
                     }
                 }
             })
 
-            // route for the dishdetail page
-            .state('app.dishdetails', {
-                url: 'menu/:id',
+            // route for the goaldetail page
+            .state('app.goaldetails', {
+                url: 'goals/:id',
                 views: {
                     'content@': {
-                        templateUrl : 'views/dishdetail.html',
-                        controller  : 'DishDetailController'
-                   }
-                }
-            })
-        
-            // route for the dishdetail page
-            .state('app.favorites', {
-                url: 'favorites',
-                views: {
-                    'content@': {
-                        templateUrl : 'views/favorites.html',
-                        controller  : 'FavoriteController'
+                        templateUrl : 'views/goaldetail.html',
+                        controller  : 'GoalDetailController'
                    }
                 }
             });
-    
+
         $urlRouterProvider.otherwise('/');
     })
 ;

@@ -1,16 +1,17 @@
 {
-  "name": "conFusion",
+  "name": "measureLife",
   "version": "1.0.0",
   "description": "Website for an awesome restaurant",
   "main": "index.html",
   "moduleType": [],
   "keywords": [
-    "conFusion",
-    "Fusion",
-    "Restaurant"
+    "measureLife",
+    "improvement",
+    "measurement",
+    "goals"
   ],
   "authors": [
-    "Jogesh Muppala"
+    "Stephen Arbour"
   ],
   "license": "MIT",
   "homepage": "",

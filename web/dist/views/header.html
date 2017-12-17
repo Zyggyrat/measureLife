@@ -11,20 +11,14 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li ng-class="{active: stateis('app')}"><a ui-sref="app">
-                        <span class="glyphicon glyphicon-home"
-                         aria-hidden="true"></span> Home</a></li>
-                    <li ng-class="{active: stateis('app.aboutus')}"><a ui-sref="app.aboutus">
-                        <span class="glyphicon glyphicon-info-sign"
-                         aria-hidden="true"></span> About</a></li>
-                    <li ng-class="{active: stateis('app.menu') || stateis('app.dishdetails')}"><a ui-sref="app.menu">
-                         <span class="glyphicon glyphicon-list-alt"
-                         aria-hidden="true"></span> 
-                         Menu</a></li>
-                     <li ng-class="{active: stateis('app.favorites')}"><a ui-sref="app.favorites">
-                     <i class="fa fa-heart-o"></i> Favorites</a></li>
-                     <li ng-class="{active: stateis('app.contactus')}"><a ui-sref="app.contactus">
-                     <i class="fa fa-envelope-o"></i> Contact</a></li>
+                    <li ng-class="{active: stateis('app')}">
+                        <a ui-sref="app"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                    <li ng-class="{active: stateis('app.aboutus')}">
+                        <a ui-sref="app.aboutus"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a>
+                     </li>
+                    <li ng-class="{active: stateis('app.goals') || stateis('app.goaldetails')}">
+                        <a ui-sref="app.goals"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Goals</a>
+                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li ng-if="!loggedIn"><a ng-click="openLogin()">
@@ -40,8 +34,8 @@
                 </ul>
             </div>
         </div>
-    </nav>         
-               
+    </nav>
+
     <header class="jumbotron">
 
         <!-- Main component for a primary marketing message or call to action -->
@@ -49,11 +43,9 @@
         <div class="container">
             <div class="row row-header">
                 <div class="col-xs-12 col-sm-8">
-                    <h1>Ristorante con Fusion</h1>
+                    <h1>Welcome to measureLife!</h1>
                     <p style="padding:40px;"></p>
-                    <p>We take inspiration from the World's best cuisines, and create
-                     a unique fusion experience. Our lipsmacking creations will 
-                     tickle your culinary senses!</p>
+                    <p><em>What gets measured improves!</em></p>
                 </div>
                 <div class="col-xs-12 col-sm-2">
                 <p style="padding:20px;"></p>

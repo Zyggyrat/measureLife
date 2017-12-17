@@ -1,0 +1,68 @@
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+               <ul class="breadcrumb">
+                   <li><a href="index.html">Home</a></li>
+                   <li class="active">Goals</li>
+               </ul>
+            </div>
+            <div class="col-xs-12">
+               <h3>Goals</h3>
+               <hr>
+            </div>
+        </div>
+        <div class="row row-content">
+            <div class="col-xs-12" ng-if="!showGoals">
+                <h3>{{message}}</h3>
+            </div>
+            <div class="col-xs-12" ng-if="showGoals">
+                 <button ng-click="toggleDetails()" class="btn btn-xs btn-primary pull-right"
+                    type="button">
+                    {{showDetails ? 'Hide Details':'Show Details'}}
+                </button>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation"
+                    ng-class="{active:isSelected(1)}">
+                    <a ng-click="select(1)"
+                     aria-controls="all goals"
+                    role="tab">Goals</a></li>
+                    <li role="presentation"
+                    ng-class="{active:isSelected(2)}">
+                    <a ng-click="select(2)"
+                    aria-controls="Mind"
+                     role="tab">Mind</a></li>
+                    <li role="presentation"
+                    ng-class="{active:isSelected(3)}">
+                    <a ng-click="select(3)"
+                     aria-controls="Body"
+                     role="tab">Body</a></li>
+                    <li role="presentation"
+                    ng-class="{active:isSelected(4)}">
+                    <a  ng-click="select(4)"
+                     aria-controls="Soul"
+                     role="tab">Soul</a></li>
+                </ul>
+                <div class="tab-content">
+                    <ul class="media-list tab-pane fade in active">
+                        <li class="media" ng-repeat="goal in goals | filter:filtText">
+                            <div class="media-left media-top">
+                                <a ui-sref="app.goaldetails({id: goal._id})">
+                                    <h2><span class="label label-info">{{goal.category}}</span></h2>
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading">{{goal.name}}</h3>
+                                <p ng-show="showDetails">{{goal.description}}</p>
+                                <button  ng-show="selectGoal" ng-click="selectGoal(goal._id)" class="btn btn-xs btn-default pull-right" type="button"><a ui-sref="app.goaldetails({id: goal._id})">
+                                <i class="fa fa-plus"></i>
+                                </a>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>

@@ -15,8 +15,8 @@
 }
 .jumbotron {
   margin: 0px auto;
-  padding: 70px 30px;
-  background: #7986CB;
+  padding: 20px 15px;
+  background: #00aa47;
   color: floralwhite;
 }
 .carousel {
@@ -32,31 +32,31 @@
   top: 0;
 }
 .navbar-inverse {
-  background: #303f9f;
+  background: #00682b;
   color: #ffffff;
 }
 .navbar-inverse .navbar-nav > .active > a {
-  background: #1a237e;
+  background: #02d157;
   color: #ffffff;
 }
 .navbar-inverse .navbar-nav > .active > a:hover {
-  background: #1a237e;
+  background: #02d157;
   color: #ffffff;
 }
 .navbar-inverse .navbar-nav > .active > a:focus {
-  background: #1a237e;
+  background: #02d157;
   color: #ffffff;
 }
 .navbar-inverse .navbar-nav > .open > a {
-  background: #1a237e;
+  background: #02d157;
   color: #ffffff;
 }
 .navbar-inverse .navbar-nav > .open > a:hover {
-  background: #1a237e;
+  background: #02d157;
   color: #ffffff;
 }
 .navbar-inverse .navbar-nav > .open > a:focus {
-  background: #1a237e;
+  background: #02d157;
   color: #ffffff;
 }
 .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {

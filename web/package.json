@@ -1,5 +1,5 @@
 {
-  "name": "conFusion",
+  "name": "measureLife",
   "private": true,
   "devDependencies": {
     "browser-sync": "^2.10.0",
