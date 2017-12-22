@@ -1,5 +1,4 @@
 # measureLife
-Created for toolchain: https://console.bluemix.net/devops/toolchains/8e9b887e-fac0-4d5b-b89b-4e0953d182c9
 
 **Overview**
 
