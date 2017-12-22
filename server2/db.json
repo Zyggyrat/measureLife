@@ -1,179 +1,170 @@
-{
-"name": "STAY OFFLINE ONE DAY PER WEEK",
-"description": "Take one day of the week (I chose Saturday) to stay completely offline and away from your computer.",
-"category": "Mind",
-"featured": "true"
-},
-{
-"name": "MEDITATE EVERY MORNING",
-"description": "Meditation can be intimidating and some people think it will be a little too hippie-ish for them, but even taking five minutes out of your day to sit and do nothing can really help improve your mood.",
-"category": "Mind",
-"featured": "false"
-},
-{
-"name": "READ 20 PAGES PER DAY.",
-"description": "We all probably wish we read a little more, right? Try reading 10 pages in the morning and 10 pages at night, and you’ll be finishing books in no time!",
-"category": "Mind",
-"featured": "false"
-},
-{
-"name": "JOURNAL EVERY DAY",
-"description": "If I’m having one of those days where my brain just won’t shut off, I’ve found journaling to be super relaxing. It also helps you find clarity in difficult situations and puts you more in tune with what’s really going on. Even though you may not think you have anything to write, you’d be surprised what happens once you actually open up a notebook.",
-"category": "Mind",
-"featured": "false"
-},
-{
-"name": "GET UP WHEN YOUR ALARM GOES OFF",
-"description": "I got into the habit of snoozing basically every time my alarm went off in the morning, so I challenged myself to get up right away. Even though you may want that extra bit of time in bed, you’ll feel a lot less groggy if you just get up.",
-"category": "Mind",
-"featured": "false"
-},
-{
-"name": "LIMIT SCREEN TIME AFTER WORK",
-"description": "Most of us stare at screens all day, and then we come home and stare at screens some more. Try switching it up and get the most out of your free time with these ideas for relaxing after work (and no, they don’t include Netflix).",
-"category": "Mind",
-"featured": "false"
-},
-{
-"name": "START A GRATITUDE JOURNAL",
-"description": "Either in the morning or before bed, write down 3-5 things you’re grateful for. You’ll start to find joy in the little things and be more appreciative despite any challenges you might be facing.",
-"category": "Mind",
-"featured": "false"
-},
-{
-"name": "TRY THE ONE-TAB CHALLENGE",
-"description": "Yes, I’m talkin’ about keeping only one tab open on your browser for a whole month. ",
-"category": "Mind",
-"featured": "false"
-},
-{
-"name": "DO A MEDIA DETOX",
-"description": "If you’re feeling a little overwhelmed from all of the information being thrown at you online and in the news, I put together a 7-day media detox challenge to help you slowly reduce the amount of time you spend consuming information.",
-"category": "Mind",
-"featured": "false"
-},
-{
-"name": "TAKE A ‘ME’ DAY",
-"description": "ome people might not think this is much of a goal, but there are so many of us who genuinely forget to look after ourselves. So schedule a spa day (or pamper yourself at home), book yourself into a hotel room, or just spend an entire day doing something you love. Treat yo self!",
-"category": "Mind",
-"featured": "false"
-},
-{
-"name": "WALK AFTER LUNCH OR DINNER",
-"description": "Going for a walk after dinner was probably one of my favorite goals that I set for myself. It really helps to reset your brain, let your food digest, and get a nice healthy dose of fresh air before returning back to your desk or couch.",
-"category": "Body",
-"featured": "true"
-},
-{
-"name": "DRINK TEA INSTEAD OF COFFEE/SODA",
-"description": "I’ve been trying to cut out coffee for so long now because I really don’t think it agrees with my body (but I love the taste and smell, y’know?). If you feel like it’s making you dehydrated and it’s breaking your bank account, try switching your usual coffee or soda for a cup of tea.",
-"category": "Body",
-"featured": "false"
-},
-{
-"name": "SQUEEZE IN 10 MINUTES OF EXERCISE PER DAY",
-"description": "If you struggle to squeeze in gym time (or just don’t have the motivation), tell yourself you only have to work out for 10 minutes. That way, you’re more likely to just get started because it doesn’t seem like a huge commitment. You’ll probably even keep going for longer than 10 minutes once you’re over the initial hurdle of getting started.",
-"category": "Body",
-"featured": "false"
-},
-{
-"name": "EAT MORE VEGGIES",
-"description": "I truly envy anyone who manages to get their daily quota of vegetables in. Fruit is easy enough for me, but I really struggle when it comes to veggies! Decide how many portions you’d like to eat per day, and do a little bit of Pinterest searching for recipes that incorporate veggies (or better yet, ones where you can’t even tell there are veggies in them).",
-"category": "Body",
-"featured": "false"
-},
-{
-"name": "30 DAYS OF YOGA",
-"description": "Yoga every day is a great way to nourish your body. If you’ve been meaning to try yoga or want to start doing it more regularly, I highly recommend taking the challenge.",
-"category": "Body",
-"featured": "false"
-},
-{
-"name": "TRY MEAL PREPPING",
-"description": "If you’re tired of having nothing to eat or spending all of your money on fast food, try setting yourself a goal to meal prep each week for a month (here’s my how-to guide). It’ll save you a whole bunch of time, and you’re much more likely to make healthy choices.",
-"category": "Body",
-"featured": "false"
-},
-{
-"name": "DEVELOP A WORKOUT ROUTINE",
-"description": "Consistency is really important when it comes to your health, and having a workout plan is going to help you stay on track and get you closer to meeting your overall wellness goals.",
-"category": "Body",
-"featured": "false"
-},
-{
-"name": "DRINK MORE WATER",
-"description": "There are so many benefits to drinking water aside from the fact that your body needs it to survive. Staying hydrated keeps your brain alert and makes your skin glow, yo! Vow to keep a water bottle with you at all times for a month, and see how much better you feel from all of that goodness.",
-"category": "Body",
-"featured": "false"
-},
-{
-"name": "30-DAY SQUAT CHALLENGE",
-"description": "Want to work on your buns and get a Beyoncé booty? Try to do 100 squats a day for 30-days!",
-"category": "Body",
-"featured": "false"
-},
-{
-"name": "TRY A NEW FORM OF EXERCISE",
-"description": "If you’re really struggling to exercise regularly, maybe you need to try a new kind of exercise. There’s a whole world out there beyond the gym! Challenge yourself to try a new form of exercise during the month. You could try pilates, kickboxing, crossfit, karate, zumba, hip hop, barre…the possibilities are endless!",
-"category": "Body",
-"featured": "false"
-},
-{
-"name": "GO TO BED AT A REASONABLE TIME",
-"description": "Make sleep a priority by creating your own night routine using this post and sticking to it for a whole month. Going to bed early doesn’t make you a grandma, okay? Give yourself permission to rest.",
-"category": "Soul",
-"featured": "true"
-},
-{
-"name": "EXPLORE TWO NEW PLACES",
-"description": "See what your hometown and the surrounding area has to offer by visiting two places you’ve never been before. Who says you have to take a plane to travel?",
-"category": "Soul",
-"featured": "false"
-},{
-"name": "LEARN SOMETHING NEW",
-"description": "Whether you want to start learning a new language or something creative like calligraphy, make some time to challenge your brain in a new way.",
-"category": "Soul",
-"featured": "false"
-},{
-"name": "DECLUTTER YOUR HOME",
-"description": "If you’ve been meaning to declutter your home for months, take the plunge and get it done with this plan I put together! By decluttering, you can make your space more relaxing and inviting so that you have one less thing that stresses you out!",
-"category": "Soul",
-"featured": "false"
-},{
-"name": "TRY THE ENVELOPE SYSTEM",
-"description": "In order to save money and get a little wiser with your spending, try budgeting out your money for the month and keeping your cash in envelopes. You’ll start to be more conscious of how you spend your paychecks, and your bank account is going to thank you! Check out Dave Ramsey’s guide to getting started.",
-"category": "Soul",
-"featured": "false"
-},{
-"name": "GET STARTED ON ONE THING YOU’VE BEEN PUTTING OFF",
-"description": "Whether it’s a task that’s just been nagging at your forever, or something bigger that you’ve been wanting to start, just get started! Break it out into 30 small chunks and do one task each day throughout the month.",
-"category": "Soul",
-"featured": "false"
-},{
-"name": "GO AU NATURAL",
-"description": "And by this I mean your hair! Try giving your locks a break for a month without heat styling. You’ll save time in the morning and get your hair back into a healthier state.",
-"category": "Soul",
-"featured": "false"
-},{
-"name": "VOLUNTEER",
-"description": "Give back to your community by volunteering – even for just a day! It’ll make you feel good, and you’ll be doing a whole lot of good for others. Double whammy!",
-"category": "Soul",
-"featured": "false"
-},{
-"name": "REACH OUT TO SOMEONE",
-"description": "I’m sure we all have someone we’ve been meaning to get in touch with for a while, whether that be your grandma or an old friend from school (or maybe even a blogger you want to collaborate with). Set yourself a goal to finally connect with them and ask them some genuinely thoughtful questions.",
-"category": "Soul",
-"featured": "false"
-},{
-"name": "START A CAPSULE WARDROBE",
-"description": "If you’re tired of feeling like you have nothing to wear or you just feel overwhelmed by your closet, why not start a capsule wardrobe? It’s basically a way to ensure that every item in your closet goes with the rest of your clothes so you always have something to wear (and it’ll take you less time to get ready in the morning).",
-"category": "Soul",
-"featured": "false"
-}
-
-
-
-
-
-
-
+[
+    {
+        "name": "STAY OFFLINE ONE DAY PER WEEK",
+        "description": "Take one day of the week (I chose Saturday) to stay completely offline and away from your computer.",
+        "category": "Mind",
+        "featured": true
+    },
+    {
+        "name": "MEDITATE EVERY MORNING",
+        "description": "Meditation can be intimidating and some people think it will be a little too hippie-ish for them, but even taking five minutes out of your day to sit and do nothing can really help improve your mood.",
+        "category": "Mind",
+        "featured": false
+    },
+    {
+        "name": "READ 20 PAGES PER DAY.",
+        "description": "We all probably wish we read a little more, right? Try reading 10 pages in the morning and 10 pages at night, and you’ll be finishing books in no time!",
+        "category": "Mind",
+        "featured": false
+    },
+    {
+        "name": "JOURNAL EVERY DAY",
+        "description": "If I’m having one of those days where my brain just won’t shut off, I’ve found journaling to be super relaxing. It also helps you find clarity in difficult situations and puts you more in tune with what’s really going on. Even though you may not think you have anything to write, you’d be surprised what happens once you actually open up a notebook.",
+        "category": "Mind",
+        "featured": false
+    },
+    {
+        "name": "GET UP WHEN YOUR ALARM GOES OFF",
+        "description": "I got into the habit of snoozing basically every time my alarm went off in the morning, so I challenged myself to get up right away. Even though you may want that extra bit of time in bed, you’ll feel a lot less groggy if you just get up.",
+        "category": "Mind",
+        "featured": false
+    },
+    {
+        "name": "LIMIT SCREEN TIME AFTER WORK",
+        "description": "Most of us stare at screens all day, and then we come home and stare at screens some more. Try switching it up and get the most out of your free time with these ideas for relaxing after work (and no, they don’t include Netflix).",
+        "category": "Mind",
+        "featured": false
+    },
+    {
+        "name": "TRY THE ONE-TAB CHALLENGE",
+        "description": "Yes, I’m talkin’ about keeping only one tab open on your browser for a whole month. ",
+        "category": "Mind",
+        "featured": false
+    },
+    {
+        "name": "DO A MEDIA DETOX",
+        "description": "If you’re feeling a little overwhelmed from all of the information being thrown at you online and in the news, I put together a 7-day media detox challenge to help you slowly reduce the amount of time you spend consuming information.",
+        "category": "Mind",
+        "featured": false
+    },
+    {
+        "name": "TAKE A ‘ME’ DAY",
+        "description": "ome people might not think this is much of a goal, but there are so many of us who genuinely forget to look after ourselves. So schedule a spa day (or pamper yourself at home), book yourself into a hotel room, or just spend an entire day doing something you love. Treat yo self!",
+        "category": "Mind",
+        "featured": false
+    },
+    {
+        "name": "WALK AFTER LUNCH OR DINNER",
+        "description": "Going for a walk after dinner was probably one of my favorite goals that I set for myself. It really helps to reset your brain, let your food digest, and get a nice healthy dose of fresh air before returning back to your desk or couch.",
+        "category": "Body",
+        "featured": true
+    },
+    {
+        "name": "DRINK TEA INSTEAD OF COFFEE/SODA",
+        "description": "I’ve been trying to cut out coffee for so long now because I really don’t think it agrees with my body (but I love the taste and smell, y’know?). If you feel like it’s making you dehydrated and it’s breaking your bank account, try switching your usual coffee or soda for a cup of tea.",
+        "category": "Body",
+        "featured": false
+    },
+    {
+        "name": "30 DAYS OF YOGA",
+        "description": "Yoga every day is a great way to nourish your body. If you’ve been meaning to try yoga or want to start doing it more regularly, I highly recommend taking the challenge.",
+        "category": "Body",
+        "featured": false
+    },
+    {
+        "name": "SQUEEZE IN 10 MINUTES OF EXERCISE PER DAY",
+        "description": "If you struggle to squeeze in gym time (or just don’t have the motivation), tell yourself you only have to work out for 10 minutes. That way, you’re more likely to just get started because it doesn’t seem like a huge commitment. You’ll probably even keep going for longer than 10 minutes once you’re over the initial hurdle of getting started.",
+        "category": "Body",
+        "featured": false
+    },
+    {
+        "name": "EAT MORE VEGGIES",
+        "description": "I truly envy anyone who manages to get their daily quota of vegetables in. Fruit is easy enough for me, but I really struggle when it comes to veggies! Decide how many portions you’d like to eat per day, and do a little bit of Pinterest searching for recipes that incorporate veggies (or better yet, ones where you can’t even tell there are veggies in them).",
+        "category": "Body",
+        "featured": false
+    },
+    {
+        "name": "TRY MEAL PREPPING",
+        "description": "If you’re tired of having nothing to eat or spending all of your money on fast food, try setting yourself a goal to meal prep each week for a month (here’s my how-to guide). It’ll save you a whole bunch of time, and you’re much more likely to make healthy choices.",
+        "category": "Body",
+        "featured": false
+    },
+    {
+        "name": "DEVELOP A WORKOUT ROUTINE",
+        "description": "Consistency is really important when it comes to your health, and having a workout plan is going to help you stay on track and get you closer to meeting your overall wellness goals.",
+        "category": "Body",
+        "featured": false
+    },
+    {
+        "name": "DRINK MORE WATER",
+        "description": "There are so many benefits to drinking water aside from the fact that your body needs it to survive. Staying hydrated keeps your brain alert and makes your skin glow, yo! Vow to keep a water bottle with you at all times for a month, and see how much better you feel from all of that goodness.",
+        "category": "Body",
+        "featured": false
+    },
+    {
+        "name": "30-DAY SQUAT CHALLENGE",
+        "description": "Want to work on your buns and get a Beyoncé booty? Try to do 100 squats a day for 30-days!",
+        "category": "Body",
+        "featured": false
+    },
+    {
+        "name": "TRY A NEW FORM OF EXERCISE",
+        "description": "If you’re really struggling to exercise regularly, maybe you need to try a new kind of exercise. There’s a whole world out there beyond the gym! Challenge yourself to try a new form of exercise during the month. You could try pilates, kickboxing, crossfit, karate, zumba, hip hop, barre…the possibilities are endless!",
+        "category": "Body",
+        "featured": false
+    },
+    {
+        "name": "GO TO BED AT A REASONABLE TIME",
+        "description": "Make sleep a priority by creating your own night routine using this post and sticking to it for a whole month. Going to bed early doesn’t make you a grandma, okay? Give yourself permission to rest.",
+        "category": "Soul",
+        "featured": true
+    },
+    {
+        "name": "EXPLORE TWO NEW PLACES",
+        "description": "See what your hometown and the surrounding area has to offer by visiting two places you’ve never been before. Who says you have to take a plane to travel?",
+        "category": "Soul",
+        "featured": false
+    },
+    {
+        "name": "LEARN SOMETHING NEW",
+        "description": "Whether you want to start learning a new language or something creative like calligraphy, make some time to challenge your brain in a new way.",
+        "category": "Soul",
+        "featured": false
+    },
+    {
+        "name": "DECLUTTER YOUR HOME",
+        "description": "If you’ve been meaning to declutter your home for months, take the plunge and get it done with this plan I put together! By decluttering, you can make your space more relaxing and inviting so that you have one less thing that stresses you out!",
+        "category": "Soul",
+        "featured": false
+    },
+    {
+        "name": "TRY THE ENVELOPE SYSTEM",
+        "description": "In order to save money and get a little wiser with your spending, try budgeting out your money for the month and keeping your cash in envelopes. You’ll start to be more conscious of how you spend your paychecks, and your bank account is going to thank you! Check out Dave Ramsey’s guide to getting started.",
+        "category": "Soul",
+        "featured": false
+    },
+    {
+        "name": "GET STARTED ON ONE THING YOU’VE BEEN PUTTING OFF",
+        "description": "Whether it’s a task that’s just been nagging at your forever, or something bigger that you’ve been wanting to start, just get started! Break it out into 30 small chunks and do one task each day throughout the month.",
+        "category": "Soul",
+        "featured": false
+    },
+    {
+        "name": "GO AU NATURAL",
+        "description": "And by this I mean your hair! Try giving your locks a break for a month without heat styling. You’ll save time in the morning and get your hair back into a healthier state.",
+        "category": "Soul",
+        "featured": false
+    },
+    {
+        "name": "VOLUNTEER",
+        "description": "Give back to your community by volunteering – even for just a day! It’ll make you feel good, and you’ll be doing a whole lot of good for others. Double whammy!",
+        "category": "Soul",
+        "featured": false
+    },
+    {
+        "name": "REACH OUT TO SOMEONE",
+        "description": "I’m sure we all have someone we’ve been meaning to get in touch with for a while, whether that be your grandma or an old friend from school (or maybe even a blogger you want to collaborate with). Set yourself a goal to finally connect with them and ask them some genuinely thoughtful questions.",
+        "category": "Soul",
+        "featured": false
+    }
+]

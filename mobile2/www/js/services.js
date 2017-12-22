@@ -1,5 +1,6 @@
 'use strict';
-var serverAddress = "192.168.1.159"; // Home
+var serverAddress = "localhost"
+//var serverAddress = "192.168.1.159"; // Home
 //var serverAddress = "172.30.0.32"; // Work
 var userId = '';
 
